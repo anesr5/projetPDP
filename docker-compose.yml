@@ -11,7 +11,7 @@ services:
         condition: service_healthy
 
   db:
-    image: postgres:16-alpine
+    image: postgres:16
     environment:
       POSTGRES_DB: genie_log
       POSTGRES_USER: genie_log

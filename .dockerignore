@@ -1,0 +1,13 @@
+venv
+backend/venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.git
+.gitignore
+.vscode
+.env
+debug.log
+demo.mp4
+tests
