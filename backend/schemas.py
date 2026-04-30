@@ -1,6 +1,15 @@
-from pydantic import BaseModel #pydantic sert à structurer les données, que toutes les données soit correct     
+from pydantic import BaseModel, ConfigDict #pydantic sert à structurer les données, que toutes les données soit correct     
 from typing import Optional #pour pouvoir modifier juste un élément d'un étudiant ou entreprises
 
+class ProfilEtudiantCreate(BaseModel):
+    telephone: str = ""
+    adresse: str = ""
+    linkedin: str = ""
+
+class ProfilEtudiantUpdate(BaseModel):
+    telephone: Optional[str] = None
+    adresse: Optional[str] = None
+    linkedin: Optional[str] = None
 
 class EtudiantCreate(BaseModel): 
     email:str
@@ -10,6 +19,7 @@ class EtudiantCreate(BaseModel):
     cv:str
     lettre_motiv:str = ""
     competences:str = ""
+    profil: Optional[ProfilEtudiantCreate] = None
 
 class EntrepriseCreate(BaseModel):
     email:str
@@ -28,6 +38,12 @@ class EtudiantUpdate(BaseModel):
     name : Optional[str] = None
     mdp : Optional[str] = None
     competences : Optional[str] = None
+    profil: Optional[ProfilEtudiantUpdate] = None
+
+class EntrepriseUpdate(BaseModel):
+    email: Optional[str] = None
+    mdp: Optional[str] = None
+    name: Optional[str] = None
 
 class OffreCreate(BaseModel):
     titre: str
@@ -39,14 +55,23 @@ class OffreCreate(BaseModel):
     lieu: str
     entreprise_id: int
 
+class OffreUpdate(BaseModel):
+    titre: Optional[str] = None
+    description: Optional[str] = None
+    type: Optional[str] = None
+    competences: Optional[str] = None
+    duree: Optional[str] = None
+    debut: Optional[str] = None
+    lieu: Optional[str] = None
+    entreprise_id: Optional[int] = None
+
 class OffreOut(BaseModel):
     id: int
     titre: str
     description: str
     entreprise_id: int
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class CandidatureCreate(BaseModel):
     etudiant_id: int
@@ -67,8 +92,7 @@ class MessageResponse(BaseModel):
     expediteur_type: str
     destinataire_type: str
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 class CVExtract(BaseModel):
     cv: str  # base64 data URL

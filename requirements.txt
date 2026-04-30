@@ -1,6 +1,8 @@
-database
 fastapi
-models
-pydantic
-schemas
+uvicorn[standard]
 sqlalchemy
+pydantic
+psycopg2-binary
+pdfplumber
+pytest
+httpx
