@@ -1,172 +1,160 @@
-# Genie Log - API de stages et emplois
+# API Genie Log
 
-Genie Log est une application web qui met en relation des etudiants et des entreprises.
-Les etudiants peuvent creer un profil, consulter des offres, postuler et echanger des messages.
-Les entreprises peuvent publier des offres et suivre les candidatures recues.
+API RESTful conteneurisée développée dans le cadre de la SAE **Développement & Déploiement d’une Application Web RESTful Conteneurisée**.
 
-## Contexte
+## Contexte du projet
 
-Le projet repond au besoin de centraliser la recherche de stages et d emplois dans une meme plateforme.
-Il permet a des etudiants de valoriser leur profil et de candidater a des offres.
-Il permet aussi aux entreprises de publier des offres et de suivre les candidatures.
+Ce projet a pour objectif de proposer une API REST permettant la gestion d'une plateforme de mise en relation entre étudiants et entreprises.
 
-## Choix techniques
+L'application permet notamment de :
+- gérer les étudiants ;
+- gérer les entreprises ;
+- gérer les offres ;
+- gérer les candidatures ;
+- suivre l’état d’une candidature.
 
-- Backend : FastAPI
-- ORM : SQLAlchemy
-- Base de donnees : PostgreSQL
-- Conteneurisation : Docker
-- Orchestration : Docker Compose
-- Documentation API : Swagger / OpenAPI
-- Validation des donnees : Pydantic
+Le projet respecte les contraintes demandées dans la SAE :
+- API REST conforme aux standards HTTP ;
+- base de données relationnelle ;
+- persistance des données avec ORM ;
+- conteneurisation avec Docker ;
+- orchestration avec Docker Compose.
 
-## Architecture
+## Technologies utilisées
 
-- backend/ : API REST FastAPI, modeles SQLAlchemy, schemas Pydantic
-- frontend/ : pages HTML CSS JS statiques qui consomment l API
-- database/init.sql : schema relationnel et jeu de donnees minimal
-- Dockerfile : image Docker de l API
-- docker-compose.yml : orchestration de l API et de PostgreSQL
+- **Backend** : FastAPI
+- **ORM** : SQLAlchemy
+- **Base de données** : PostgreSQL
+- **Conteneurisation** : Docker
+- **Orchestration** : Docker Compose
 
-Relations modelisees :
+## Dépôt GitHub
 
-- One-to-One : Etudiant vers ProfilEtudiant
-- One-to-Many / Many-to-One : Entreprise vers Offre
-- Many-to-Many : Etudiant vers Offre via Candidature
+Le code source du projet est disponible ici :
 
-## Lancement avec Docker Compose
+[https://github.com/anesr5/projetPDP](https://github.com/anesr5/projetPDP)
+
+## Structure du projet
+
+```bash
+.
+├── app/
+├── database/
+├── docker-compose.yml
+├── Dockerfile
+├── requirements.txt
+└── README.md
+```
+
+## Architecture du projet
+
+L’architecture repose sur deux conteneurs Docker :
+- un conteneur pour l’API FastAPI ;
+- un conteneur pour la base de données PostgreSQL.
+
+Docker Compose permet de lancer l’ensemble du projet et d’assurer la communication entre les services.
+
+## Lancer le projet avec Docker Compose
+
+### 1. Cloner le dépôt
+
+```bash
+git clone https://github.com/anesr5/projetPDP.git
+cd projetPDP
+```
+
+### 2. Lancer les conteneurs
 
 ```bash
 docker compose up --build
 ```
 
-API :
-- http://localhost:8000
-- http://localhost:8000/docs
-- http://localhost:8000/openapi.json
+### 3. Accéder à l’application
 
-PostgreSQL :
-- host : localhost
-- port : 5432
-- database : genie_log
-- user : genie_log
-- password : genie_log_password
+Une fois les conteneurs lancés, l’API est accessible à l’adresse suivante :
 
-Le volume Docker postgres_data conserve les donnees PostgreSQL entre deux lancements.
+- API : [http://localhost:8000](http://localhost:8000)
+- Swagger UI : [http://localhost:8000/docs](http://localhost:8000/docs)
+- ReDoc : [http://localhost:8000/redoc](http://localhost:8000/redoc)
 
-## Lancement local sans Docker
+## Jeu de données de test
 
-Sous Linux ou macOS :
+Le projet contient un fichier SQL ou un script d’import permettant d’initialiser un jeu de données minimal pour les tests.
 
-```bash
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-uvicorn main:app --reload --app-dir backend
-```
+Exemples de données manipulées :
+- étudiants ;
+- entreprises ;
+- offres ;
+- candidatures.
 
-Sous Windows PowerShell :
+## Exemples de routes de l’API
 
-```powershell
-py -3 -m venv venv
-.\venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-uvicorn main:app --reload --app-dir backend
-```
+Voici quelques routes principales de l’API :
 
-Par defaut, l API utilise backend/genie_log.db en SQLite si DATABASE_URL n est pas defini.
+### Étudiants
+- `GET /students`
+- `GET /students/{id}`
+- `POST /students`
+- `PUT /students/{id}`
+- `DELETE /students/{id}`
 
-## Donnees de test
+### Entreprises
+- `GET /companies`
+- `GET /companies/{id}`
+- `POST /companies`
+- `PUT /companies/{id}`
+- `DELETE /companies/{id}`
 
-Le fichier database/init.sql cree un jeu de donnees minimal dans PostgreSQL :
+### Offres
+- `GET /offers`
+- `GET /offers/{id}`
+- `POST /offers`
+- `PUT /offers/{id}`
+- `DELETE /offers/{id}`
 
-- Etudiant : alice@example.com / alice123
-- Etudiant : karim@example.com / karim123
-- Entreprise : contact@technova.example / tech123
-- Entreprise : rh@dataworks.example / data123
+### Candidatures
+- `GET /applications`
+- `GET /applications/{id}`
+- `POST /applications`
+- `PUT /applications/{id}`
+- `DELETE /applications/{id}`
 
-## Demonstration API
+## Exemple d’utilisation
 
-La demonstration peut etre faite directement dans Swagger :
+Après le lancement du projet, il est possible de tester directement l’API depuis Swagger :
+1. ouvrir [http://localhost:8000/docs](http://localhost:8000/docs)
+2. sélectionner une route ;
+3. cliquer sur **Try it out** ;
+4. exécuter la requête.
 
-- http://localhost:8000/docs
+## Relations modélisées
 
-Parcours de demonstration conseille :
+Le projet met en œuvre les relations demandées dans l’énoncé :
+- **One-to-One**
+- **One-to-Many / Many-to-One**
+- **Many-to-Many**
 
-1. Creer un etudiant
-2. Creer une entreprise
-3. Creer une offre
-4. Creer une candidature
-5. Modifier le statut d une candidature
-6. Lister les candidatures d un etudiant ou d une entreprise
-
-## Exemples de routes REST
-
-Creer un etudiant :
-
-```bash
-curl -X POST http://localhost:8000/etudiants -H "Content-Type: application/json" -d "{\"email\":\"nora@example.com\",\"mdp\":\"nora123\",\"age\":20,\"name\":\"Nora\",\"cv\":\"CV\",\"lettre_motiv\":\"Motivation\",\"competences\":\"python sql docker\",\"profil\":{\"telephone\":\"0600000003\",\"adresse\":\"Villetaneuse\",\"linkedin\":\"\"}}"
-```
-
-Connexion etudiant :
-
-```bash
-curl -X POST http://localhost:8000/auth/etudiants/login -H "Content-Type: application/json" -d "{\"email\":\"alice@example.com\",\"mdp\":\"alice123\"}"
-```
-
-Lister les offres :
-
-```bash
-curl http://localhost:8000/offres
-```
-
-Creer une offre :
-
-```bash
-curl -X POST http://localhost:8000/offres -H "Content-Type: application/json" -d "{\"titre\":\"Stage API REST\",\"description\":\"Developpement backend\",\"type\":\"stage\",\"competences\":\"python fastapi postgresql\",\"duree\":\"4 mois\",\"debut\":\"2026-06-01\",\"lieu\":\"Paris\",\"entreprise_id\":1}"
-```
-
-Postuler :
-
-```bash
-curl -X POST http://localhost:8000/candidatures -H "Content-Type: application/json" -d "{\"etudiant_id\":1,\"offre_id\":2}"
-```
-
-Modifier le statut d une candidature :
-
-```bash
-curl -X PUT "http://localhost:8000/candidatures/1/statut?nouveau_statut=acceptee"
-```
+Ces relations sont représentées dans les entités du code ainsi que dans le schéma relationnel de la base de données.
 
 ## Image Docker Hub
 
-Commande de build locale :
+L’image Docker de l’API est disponible ici :
+
+[https://hub.docker.com/r/ayoubhakim/genie-log-api](https://hub.docker.com/r/ayoubhakim/genie-log-api)
+
+### Lancer l’image en local
 
 ```bash
-docker build -t genie-log-api:latest .
+docker pull ayoubhakim/genie-log-api
+docker run -p 8000:8000 ayoubhakim/genie-log-api
 ```
 
-Commande pour taguer et pousser l image :
+## Persistance des données
 
-```bash
-docker tag genie-log-api:latest ayoubhakim/genie-log-api:latest
-docker push ayoubhakim/genie-log-api:latest
-```
+La base de données est lancée avec Docker Compose.
 
-Lien Docker Hub :
+Si un volume Docker est utilisé, il permet de conserver les données même après l’arrêt des conteneurs.
 
-```text
-https://hub.docker.com/r/ayoubhakim/genie-log-api
-```
+## Auteur
 
-Commande de lancement depuis Docker Hub :
-
-```bash
-docker run --rm -p 8000:8000 -e DATABASE_URL=sqlite:////tmp/genie_log.db ayoubhakim/genie-log-api:latest
-```
-
-## Tests
-
-```bash
-pytest
-```
+Projet réalisé dans le cadre de la SAE DDAW – Sup-Galilée.
