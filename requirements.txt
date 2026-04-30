@@ -1,0 +1,6 @@
+database
+fastapi
+models
+pydantic
+schemas
+sqlalchemy

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription Étudiant — ChercheTonTaff</title>
+    <link rel="stylesheet" href="app.css?v=3">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-card fade-in" style="max-width:520px;">
+            <div class="auth-card-header">
+                <h1>Créer un compte Étudiant</h1>
+                <p>Rejoignez ChercheTonTaff et trouvez votre opportunité</p>
+            </div>
+            <div class="auth-card-body">
+                <form id="formInscription">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 1rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Nom complet</label>
+                            <input class="form-control" type="text" id="name" placeholder="Jean Dupont" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="age">Âge</label>
+                            <input class="form-control" type="number" id="age" placeholder="21" min="16" max="99" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="email">Adresse email</label>
+                        <input class="form-control" type="email" id="email" placeholder="vous@exemple.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="mdp">Mot de passe</label>
+                        <input class="form-control" type="password" id="mdp" placeholder="••••••••" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="cv">CV</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="cv" accept=".pdf" required>
+                            <label for="cv" class="file-input-label">
+                                <span class="file-icon">PDF</span>
+                                <span id="file-name-display">Choisir un fichier PDF...</span>
+                            </label>
+                        </div>
+                        <p style="font-size:0.75rem;color:var(--text-muted);margin-top:0.35rem;">Format PDF uniquement · Max 5 Mo</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="competences">Compétences <span style="font-weight:400;color:var(--text-muted);">(séparées par des virgules)</span></label>
+                        <input class="form-control" type="text" id="competences" placeholder="Python, React, SQL, Git...">
+                    </div>
+                    <div id="messageRetour" style="margin-bottom:0.5rem;"></div>
+                    <button type="submit" class="btn btn-primary btn-full btn-lg">Créer mon compte</button>
+                </form>
+                <div class="auth-footer">
+                    Déjà un compte ? <a href="connexion.html">Se connecter</a>
+                    &nbsp;·&nbsp; <a href="index.html">← Accueil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="inscription.js?v=3"></script>
+</body>
+</html>

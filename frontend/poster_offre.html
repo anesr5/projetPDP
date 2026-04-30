@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publier une offre — ChercheTonTaff</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand">ChercheTonTaff</span>
+        <div class="navbar-actions">
+            <a href="dashbord_entreprise.html" class="btn btn-ghost btn-sm">← Dashboard</a>
+        </div>
+    </nav>
+
+    <div class="auth-page" style="background:var(--bg);padding:2rem 1rem;">
+        <div class="auth-card fade-in" style="max-width:560px;">
+            <div class="auth-card-header">
+                <h1>Publier une offre</h1>
+                <p>Remplissez les informations pour diffuser votre offre</p>
+            </div>
+            <div class="auth-card-body">
+                <form id="OffrePost">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 1rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="type">Type d'offre</label>
+                            <input class="form-control" type="text" id="type" placeholder="stage / alternance / emploi" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="duree">Durée</label>
+                            <input class="form-control" type="text" id="duree" placeholder="ex: 6 mois" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="title">Titre de l'offre</label>
+                        <input class="form-control" type="text" id="title" placeholder="ex: Développeur Web React" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea class="form-control" id="description" placeholder="Décrivez le poste et les missions..." rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="competences">Compétences requises</label>
+                        <input class="form-control" type="text" id="competences" placeholder="ex: React, Node.js, SQL" required>
+                    </div>
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 1rem;">
+                        <div class="form-group">
+                            <label class="form-label" for="debut">Date de début</label>
+                            <input class="form-control" type="text" id="debut" placeholder="ex: 01/09/2025" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="lieu">Lieu</label>
+                            <input class="form-control" type="text" id="lieu" placeholder="ex: Paris, Remote" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full btn-lg">Publier l'offre</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="poster_offre.js"></script>
+</body>
+</html>

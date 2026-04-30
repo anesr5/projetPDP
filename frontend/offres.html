@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offres disponibles — ChercheTonTaff</title>
+    <link rel="stylesheet" href="app.css?v=3">
+</head>
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand">ChercheTonTaff</span>
+        <div class="navbar-actions">
+            <a href="dashbord.html" class="btn btn-ghost btn-sm">← Dashboard</a>
+            <button class="btn btn-danger btn-sm" onclick="logout()">Déconnexion</button>
+        </div>
+    </nav>
+
+    <div style="max-width:1180px;margin:0 auto;padding:2rem 1.5rem;">
+        <div style="margin-bottom:1.5rem;">
+            <h2 style="margin-bottom:0.25rem;">Offres disponibles</h2>
+            <p id="offres-count" style="font-size:0.875rem;">Chargement...</p>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Rechercher par titre, lieu, compétences...">
+            <button class="btn btn-primary btn-sm" onclick="filtrerOffres()">Rechercher</button>
+        </div>
+
+        <div class="grid-auto" id="offres-container">
+            <div class="empty-state"><p>Chargement des offres...</p></div>
+        </div>
+    </div>
+
+    <script src="offres.js?v=3"></script>
+</body>
+</html>

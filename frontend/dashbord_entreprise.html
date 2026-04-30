@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Entreprise — ChercheTonTaff</title>
+    <link rel="stylesheet" href="app.css?v=3">
+</head>
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand">ChercheTonTaff</span>
+        <div class="navbar-actions">
+            <button class="btn btn-ghost btn-sm" onclick="ouvrirMessagerie()">Messagerie</button>
+            <button class="btn btn-danger btn-sm" onclick="logout()">Déconnexion</button>
+        </div>
+    </nav>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar profil entreprise -->
+        <aside>
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="avatar-initiale">?</div>
+                    <div class="profile-name" id="name">—</div>
+                    <span class="profile-role">Entreprise</span>
+                </div>
+                <div class="profile-body">
+                    <div class="profile-item">
+                        <span class="profile-item-label">Email</span>
+                        <span class="profile-item-value" id="email">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats sidebar -->
+            <div class="stats-grid" style="margin-top:0.75rem;">
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-offres">0</div>
+                    <div class="stat-label">Offres publiées</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-total">0</div>
+                    <div class="stat-label">Candidatures</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-pending" style="color:#d97706;">0</div>
+                    <div class="stat-label">En attente</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stat-accepted" style="color:#059669;">0</div>
+                    <div class="stat-label">Acceptées</div>
+                </div>
+            </div>
+
+            <a href="poster_offre.html" class="btn btn-primary btn-full" style="margin-top:0.75rem;">Publier une offre</a>
+        </aside>
+
+        <!-- Contenu principal avec onglets -->
+        <main class="dashboard-main">
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('offres',this)">Mes offres</button>
+                <button class="tab-btn" onclick="switchTab('candidatures',this)">Candidatures reçues
+                    <span id="cand-tab-badge" class="badge badge-type" style="display:none;margin-left:0.35rem;"></span>
+                </button>
+            </div>
+
+            <!-- Tab: Mes offres publiées -->
+            <div id="tab-offres" class="tab-content active">
+                <div id="offres-list"><p style="color:var(--text-muted);padding:1rem 0;">Chargement des offres...</p></div>
+            </div>
+
+            <!-- Tab: Candidatures reçues -->
+            <div id="tab-candidatures" class="tab-content">
+                <!-- Filtre par offre -->
+                <div style="margin-bottom:1rem;">
+                    <select class="form-control" id="filtre-offre" onchange="filtrerCandidatures()" style="max-width:300px;">
+                        <option value="">Toutes les offres</option>
+                    </select>
+                </div>
+                <div id="candidatures-container"><p style="color:var(--text-muted);padding:1rem 0;">Chargement des candidatures...</p></div>
+            </div>
+        </main>
+    </div>
+
+    <span id="Bienvenue" style="display:none;"></span>
+    <script src="dashbord_entreprise.js?v=3"></script>
+</body>
+</html>

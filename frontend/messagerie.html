@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messagerie — ChercheTonTaff</title>
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand">ChercheTonTaff</span>
+        <div class="navbar-actions">
+            <a href="javascript:history.back()" class="btn btn-ghost btn-sm">← Retour</a>
+        </div>
+    </nav>
+
+    <div style="max-width:720px;margin:0 auto;padding:2rem 1.5rem;">
+        <h2 style="margin-bottom:1.5rem;">Messagerie</h2>
+
+        <!-- Formulaire envoi -->
+        <div class="card" style="margin-bottom:2rem;">
+            <div class="card-body">
+                <h3 style="margin-bottom:1rem;font-size:0.95rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.05em;">Nouveau message</h3>
+                <form id="formMessage">
+                    <div class="form-group">
+                        <label class="form-label" for="destinataire_email">Destinataire (email)</label>
+                        <input class="form-control" type="email" id="destinataire_email" placeholder="contact@exemple.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="contenu">Message</label>
+                        <textarea class="form-control" id="contenu" placeholder="Écrivez votre message ici..." rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Envoyer</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Messages reçus -->
+        <div class="section-title">
+            <span>Messages reçus</span>
+        </div>
+        <div id="messages-container">
+            <div class="empty-state"><p>Chargement des messages...</p></div>
+        </div>
+    </div>
+
+    <script src="messagerie.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom right, #e0f7fa, #f5f5f5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Nouveau conteneur centré */
+.container {
+    background: #fff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* --- Boîte de connexion --- */
+form {
+    background-color: white;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- Titre --- */
+h1 {
+    text-align: center;
+    color: #00695c;
+    margin-bottom: 20px;
+}
+
+/* --- Champs de formulaire --- */
+input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    border-color: #00796b;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 121, 107, 0.3);
+}
+
+/* --- Bouton --- */
+button {
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    background-color: #00796b;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #004d40;
+}
+
+/* --- Message d’erreur / info --- */
+#message {
+    text-align: center;
+    font-weight: bold;
+    color: #d32f2f;
+    margin-top: 10px;
+}

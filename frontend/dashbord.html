@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Étudiant — ChercheTonTaff</title>
+    <link rel="stylesheet" href="app.css?v=3">
+</head>
+<body>
+    <nav class="navbar">
+        <span class="navbar-brand">ChercheTonTaff</span>
+        <div class="navbar-actions">
+            <button class="btn btn-ghost btn-sm" onclick="ouvrirMessagerie()">Messagerie</button>
+            <button class="btn btn-danger btn-sm" onclick="logout()">Déconnexion</button>
+        </div>
+    </nav>
+
+    <div class="dashboard-layout">
+        <!-- Sidebar profil -->
+        <aside>
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="avatar-initiale">?</div>
+                    <div class="profile-name" id="name">—</div>
+                    <span class="profile-role">Étudiant</span>
+                </div>
+                <div class="profile-body">
+                    <div class="profile-item">
+                        <span class="profile-item-label">Email</span>
+                        <span class="profile-item-value" id="email">—</span>
+                    </div>
+                    <div class="profile-item">
+                        <span class="profile-item-label">Âge</span>
+                        <span class="profile-item-value" id="age">—</span>
+                    </div>
+                    <div class="profile-item">
+                        <span class="profile-item-label">CV</span>
+                        <span class="profile-item-value" id="cv">—</span>
+                    </div>
+                    <div class="profile-item">
+                        <span class="profile-item-label">Compétences</span>
+                        <span class="profile-item-value" id="competences" style="font-size:0.8rem;">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CV update -->
+            <div style="margin-top:0.75rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;">
+                <p style="font-size:0.78rem;font-weight:600;color:var(--text);margin-bottom:0.6rem;">Mettre à jour mon CV</p>
+                <div class="file-input-wrapper" style="margin-bottom:0.5rem;">
+                    <input type="file" id="cv-update-input" accept=".pdf">
+                    <label for="cv-update-input" class="file-input-label">
+                        <span class="file-icon">PDF</span>
+                        <span id="cv-update-name">Choisir un PDF...</span>
+                    </label>
+                </div>
+                <button class="btn btn-primary btn-full btn-sm" onclick="updateCV()">Enregistrer le CV</button>
+                <div id="cv-update-msg" style="margin-top:0.4rem;"></div>
+            </div>
+
+            <!-- Competences update -->
+            <div style="margin-top:0.75rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;">
+                <p style="font-size:0.78rem;font-weight:600;color:var(--text);margin-bottom:0.6rem;">Mes compétences</p>
+                <input class="form-control" type="text" id="competences-input" placeholder="Python, React, SQL..." style="font-size:0.84rem;margin-bottom:0.5rem;">
+                <button class="btn btn-primary btn-full btn-sm" onclick="updateCompetences()">Enregistrer</button>
+                <div id="comp-update-msg" style="margin-top:0.4rem;"></div>
+            </div>
+
+            <a href="offres.html" class="btn btn-primary btn-full" style="margin-top:0.75rem;">Voir les offres</a>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="dashboard-main">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('candidatures', this)">Mes candidatures
+                    <span id="count-badge" class="badge badge-type" style="display:none;margin-left:0.35rem;"></span>
+                </button>
+                <button class="tab-btn" onclick="switchTab('ia', this)">Recommandations IA</button>
+            </div>
+
+            <!-- Tab: Mes candidatures -->
+            <div id="tab-candidatures" class="tab-content active">
+                <div id="liste-candidatures">
+                    <p style="color:var(--text-muted);padding:1rem 0;">Chargement...</p>
+                </div>
+            </div>
+
+            <!-- Tab: Recommandations IA -->
+            <div id="tab-ia" class="tab-content">
+                <div id="ia-analyse"></div>
+                <div class="section-title" style="margin-top:1rem;"><span>Offres recommandées pour vous</span></div>
+                <div id="liste-recommandations">
+                    <p style="color:var(--text-muted);padding:1rem 0;">Chargement...</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- hidden for JS compat -->
+    <span id="Bienvenue" style="display:none;"></span>
+
+    <script src="dashbord.js?v=3"></script>
+</body>
+</html>

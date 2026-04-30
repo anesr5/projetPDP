@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion Entreprise — ChercheTonTaff</title>
+    <link rel="stylesheet" href="app.css?v=3">
+</head>
+<body>
+    <div class="auth-page">
+        <div class="auth-card fade-in">
+            <div class="auth-card-header">
+                <h1>Espace Entreprise</h1>
+                <p>Connectez-vous pour gérer vos offres et candidatures</p>
+            </div>
+            <div class="auth-card-body">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label class="form-label" for="email">Adresse email</label>
+                        <input class="form-control" type="email" id="email" placeholder="contact@entreprise.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="mdp">Mot de passe</label>
+                        <input class="form-control" type="password" id="mdp" placeholder="••••••••" required>
+                    </div>
+                    <div id="message" style="margin-bottom:0.5rem;"></div>
+                    <button type="submit" class="btn btn-primary btn-full btn-lg">Se connecter</button>
+                </form>
+                <div class="auth-footer">
+                    Pas encore de compte ? <a href="inscription_entreprise.html">S'inscrire</a>
+                    &nbsp;·&nbsp; <a href="index.html">← Accueil</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="connexion_entreprise.js?v=3"></script>
+</body>
+</html>
